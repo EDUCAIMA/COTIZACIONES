@@ -4,15 +4,31 @@ import { Search, Bell, HelpCircle, Calendar as CalendarIcon, ChevronDown } from 
 export const Header = ({ title }) => {
   return (
     <header className="sticky top-0 w-full h-16 flex items-center justify-between px-8 bg-white/95 backdrop-blur-xl z-50 border-b border-slate-200 font-headline font-medium">
-      <div className="flex items-center gap-8 flex-1">
-        <h2 className="text-lg font-extrabold text-brand-purple">{title}</h2>
-        <div className="relative w-96">
+      <div className="flex items-center gap-6 flex-1">
+        <h2 className="text-lg font-extrabold text-brand-purple whitespace-nowrap">{title}</h2>
+        <div className="relative w-80">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
           <input 
             className="w-full bg-slate-100 border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-brand-purple/20 placeholder:text-slate-400" 
-            placeholder="Buscar reservas o miembros..." 
+            placeholder="Buscar..." 
             type="text"
           />
+        </div>
+      </div>
+
+      {/* KPI Summaries */}
+      <div className="hidden xl:flex items-center gap-6 px-6 border-x border-slate-100 mx-6">
+        <div className="flex flex-col">
+          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Ingresos Hoy</span>
+          <span className="text-sm font-extrabold text-brand-purple">$2.450.000</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Ocupación</span>
+          <span className="text-sm font-extrabold text-secondary">85%</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Reservas</span>
+          <span className="text-sm font-extrabold text-pending">12</span>
         </div>
       </div>
       

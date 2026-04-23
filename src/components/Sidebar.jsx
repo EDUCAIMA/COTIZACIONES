@@ -14,12 +14,15 @@ const menuItems = [
 export const Sidebar = ({ activeView, onViewChange }) => {
   return (
     <aside className="h-screen w-72 flex-col fixed left-0 top-0 bg-brand-purple flex p-6 gap-y-4 font-headline antialiased tracking-tight shadow-2xl z-[60]">
-      <div className="flex justify-center mb-8 px-4">
-        <img 
-          src="/logo.png" 
-          alt="Encanto Logo" 
-          className="w-full h-auto object-contain" 
-        />
+      <div className="flex flex-col items-center mb-10 px-4">
+        <div className="w-full aspect-[3/1] relative flex items-center justify-center overflow-hidden rounded-2xl bg-white/5 p-4 backdrop-blur-sm border border-white/10">
+          <img 
+            src="/logo.png" 
+            alt="Encanto Logo" 
+            className="max-w-full max-h-full object-contain brightness-0 invert opacity-90 transition-all duration-500 hover:scale-110" 
+          />
+        </div>
+        <div className="w-12 h-1 bg-primary/40 rounded-full mt-4 blur-[1px]"></div>
       </div>
 
       <nav className="flex-1 space-y-1">
@@ -31,14 +34,26 @@ export const Sidebar = ({ activeView, onViewChange }) => {
               key={item.id}
               onClick={() => onViewChange(item.id)}
               className={cn(
-                "w-full flex items-center gap-3 px-4 py-3 transition-all duration-200 group rounded-lg",
+                "w-full flex items-center gap-3 px-4 py-2.5 transition-all duration-300 group rounded-xl relative",
                 isActive 
-                  ? "text-white font-semibold bg-brand-purple-dark border-l-4 border-primary rounded-r-lg" 
-                  : "text-white/70 hover:text-white hover:bg-white/10"
+                  ? "text-white font-bold bg-white/10 shadow-inner" 
+                  : "text-white/60 hover:text-white hover:bg-white/5"
               )}
             >
-              <Icon size={20} className={cn("transition-transform", !isActive && "group-hover:scale-110")} />
-              <span className="font-medium">{item.label}</span>
+              {isActive && (
+                <motion.div 
+                  layoutId="activeNav"
+                  className="absolute left-0 w-1.5 h-6 bg-primary rounded-r-full"
+                />
+              )}
+              <Icon 
+                size={18} 
+                className={cn(
+                  "transition-all duration-300", 
+                  isActive ? "text-primary scale-110" : "group-hover:scale-110 group-hover:text-white"
+                )} 
+              />
+              <span className="text-[13px] font-semibold tracking-wide uppercase">{item.label}</span>
             </button>
           );
         })}
